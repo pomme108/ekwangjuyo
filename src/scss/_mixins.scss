@@ -1,0 +1,115 @@
+
+// ####### flex
+@mixin flex($jc:null, $ai:null, $gap: null) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $gap;
+}
+
+@mixin flex-gap($gap: null) {
+  display: flex;
+  gap: $gap;
+}
+
+@mixin flex-center($jc:center, $ai:center, $gap: null) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $gap;
+}
+
+@mixin flex-between($ai:center, $gap: null) {
+  display: flex;
+  justify-content: space-between;
+  align-items: $ai;
+  gap: $gap;
+}
+
+@mixin flexCol($gap: null) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin flexCol-center($gap: null) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+}
+
+// ####### absolute
+@mixin pos-abs($t:null, $b:null, $l:null, $r:null,) {
+  position: absolute;
+  top: $t;
+  bottom: $b;
+  left: $l;
+  right: $r;
+}
+
+@mixin pos-abs-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin pos-abs-centerX($t:null, $b:null) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: $t;
+  bottom: $b;
+}
+
+@mixin pos-abs-centerY($l: null, $r:null) {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: $l;
+  right: $r;
+}
+
+@mixin trans($t: null, $s: .3s, $m:ease-in-out) {
+  transition: $t $s $m;
+}
+
+$card-hover-lift: 15px;
+
+@mixin card-hover-lift($surface) {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    > #{$surface} { @include trans($t: transform); }
+    &:hover > #{$surface} { transform: translateY(-$card-hover-lift); }
+  }
+}
+
+@mixin pos-abs-center-scale-s($s:0) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale($s);
+}
+
+@mixin pos-abs-center-scale-n($s:1) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale($s);
+}
+
+// ####### media
+// 태블릿 이하
+@mixin tablet($wd: 1199px) {
+  @media (max-width: $wd) {
+    @content;
+  }
+}
+
+// 모바일
+@mixin mobile($wd: 767px) {
+  @media (max-width: $wd) {
+    @content;
+  }
+}
