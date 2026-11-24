@@ -8,4 +8,14 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        loadPaths: ["./src/scss"],
+        additionalData:
+          '@use "variables" as *;\n@use "mixins" as *;',
+      },
+    },
+  },
+
 })
