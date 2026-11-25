@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 import './scss/header-footer.scss'
 
@@ -71,19 +71,25 @@ export const Header = () => {
   // null: 닫힘 / 숫자: 해당 메인 메뉴의 하위 메뉴 / 'account': 계정 박스
   const [active, setActive] = useState(null)
 
+  const { pathname } = useLocation()
+  const isOverlay = pathname === '/'   // 메인 페이지에서만 헤더를 영상 위에 겹침
+
   const activeMenu = mainMenu.find((m) => m.id === active)
   const isAccountOpen = active === 'account'
-  const isLangOpen = active === 'lang'  
+  const isLangOpen = active === 'lang'
 
   return (
-    <header className="site-header" onMouseLeave={() => setActive(null)}>
+    <header
+      className={`site-header${isOverlay ? ' site-header--overlay' : ''}`}
+      onMouseLeave={() => setActive(null)}
+    >
       <div className="site-header__inner">
         <nav className="site-header__nav" aria-label="주 메뉴">
           {mainMenu.map(({ id, menu, path }) => (
             <NavLink
               key={id}
               to={path}
-              data-active={active === id ? 'true' : undefined}   // ← 추가
+              data-active={active === id ? 'true' : undefined}
               onMouseEnter={() => setActive(id)}
               onFocus={() => setActive(id)}
             >
@@ -92,14 +98,16 @@ export const Header = () => {
           ))}
         </nav>
 
-        <h1 className="site-header__logo">
-          <Link to="/" aria-label="광주요 홈">
-            <img src="/images/header-footer/logo.png" alt="광주요" />
-          </Link>
-        </h1>
+        {!isOverlay && (
+          <h1 className="site-header__logo">
+            <Link to="/" aria-label="광주요 홈">
+              <img src="/images/header-footer/logo.png" alt="광주요" />
+            </Link>
+          </h1>
+        )}
 
         <div className="site-header__utilities">
-           <div
+          <div
             className="site-header__lang"
             onMouseEnter={() => setActive('lang')}
             onFocus={() => setActive('lang')}
@@ -147,7 +155,7 @@ export const Header = () => {
 
       {/* 메인 메뉴 하위 메뉴 */}
       {activeMenu && (
-         <div className={`site-header__sub site-header__sub--${activeMenu.class}`}>
+        <div className={`site-header__sub site-header__sub--${activeMenu.class}`}>
           {activeMenu.groups ? (
             <div className="site-header__groups">
               {activeMenu.groups.map(({ id, title, path, items }) => (

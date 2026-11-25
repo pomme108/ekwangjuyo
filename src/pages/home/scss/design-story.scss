@@ -1,0 +1,413 @@
+
+.design-story {
+  width: 100%;
+  padding-top: 140px;
+  box-sizing: border-box;
+  font-family: 'Pretendard', sans-serif;
+
+  // ==============================
+  // 상단 타이틀 영역
+  // ==============================
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    margin: 0 0 21px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    color: #c4c7ce;
+  }
+
+  &__heading {
+    margin: 0 0 30px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 80px;
+    color: #242824;
+    word-break: keep-all;
+  }
+
+  &__description {
+    width: 100%;
+    max-width: 718px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: #757982;
+    word-break: keep-all;
+  }
+
+  // ==============================
+  // 전체 콘텐츠 영역
+  // ==============================
+
+  &__inner {
+    width: calc(100% - 80px);
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  // 클래식 / 모던 탭
+  &__tabs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #b4b8c0;
+  }
+
+  &__tab {
+    padding: 12px 24px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    color: #565a63;
+    opacity: 0.4;
+    cursor: pointer;
+
+    transition:
+      color 0.3s ease,
+      opacity 0.3s ease;
+
+    &.is-active {
+      color: #111;
+      opacity: 1;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // ==============================
+  // 메인 이미지 + 상세 내용
+  // ==============================
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    animation: design-story-fade 0.6s ease both;
+  }
+
+  // 왼쪽 메인 이미지
+  &__main-image {
+    position: relative;
+    flex: 984;
+    min-width: 0;
+    aspect-ratio: 984 / 633;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    // 헤리티지 시리즈 피그마 크롭
+    &--1 img {
+      position: absolute;
+      width: 89.58%;
+      height: 139.26%;
+      max-width: none;
+      left: 5.16%;
+      top: -21.22%;
+      object-fit: fill;
+    }
+  }
+
+  // 오른쪽 콘텐츠
+  &__detail {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 520;
+    min-width: 0;
+    margin-right: 66px;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  // 시리즈 이름
+  &__series {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #111;
+  }
+
+  // 시리즈 제목
+  &__subtitle {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 44px;
+    color: #111;
+    word-break: keep-all;
+  }
+
+  // 시리즈 설명
+  &__summary {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #565a63;
+    white-space: pre-line;
+    word-break: keep-all;
+  }
+
+  // ==============================
+  // 하단 시리즈 상품
+  // ==============================
+
+  &__products {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+  }
+
+  &__product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 240 / 210;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    span {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      color: #111;
+      text-align: center;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  // 다음 시리즈 화살표
+  &__next {
+    position: absolute;
+    right: -66px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 57px;
+    height: 57px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+      display: block;
+      transform: scaleX(-1);
+    }
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    color: #757982;
+  }
+
+  // ==============================
+  // 태블릿 반응형
+  // ==============================
+
+  @media (max-width: 1024px) {
+    padding-top: 100px;
+
+    &__header {
+      margin-bottom: 50px;
+    }
+
+    &__heading {
+      font-size: 42px;
+      line-height: 1.5;
+    }
+
+    &__description {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    &__content {
+      gap: 20px;
+    }
+
+    &__detail {
+      margin-right: 40px;
+      gap: 20px;
+    }
+
+    &__text {
+      gap: 16px;
+    }
+
+    &__subtitle {
+      font-size: 26px;
+      line-height: 36px;
+    }
+
+    &__summary,
+    &__series {
+      font-size: 16px;
+      line-height: 26px;
+    }
+
+    &__products {
+      gap: 16px;
+    }
+
+    &__next {
+      width: 36px;
+      right: -40px;
+    }
+
+    &__product span {
+      font-size: 13px;
+    }
+  }
+
+  // ==============================
+  // 모바일 반응형
+  // ==============================
+
+  @media (max-width: 767px) {
+    padding-top: 80px;
+
+    &__header {
+      margin-bottom: 40px;
+    }
+
+    &__title {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    &__heading {
+      font-size: 30px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    &__description {
+      font-size: 16px;
+      line-height: 26px;
+
+      br {
+        display: none;
+      }
+    }
+
+    &__inner {
+      width: calc(100% - 40px);
+    }
+
+    &__tabs {
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    &__tab {
+      font-size: 18px;
+      padding: 8px 16px;
+    }
+
+    &__content {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    &__main-image {
+      flex: none;
+      width: 100%;
+    }
+
+    &__detail {
+      flex: none;
+      width: 100%;
+      margin-right: 0;
+    }
+
+    &__subtitle {
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    &__products {
+      width: calc(100% - 40px);
+    }
+  }
+}
+
+// 시리즈 변경 시 페이드 효과
+@keyframes design-story-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .design-story__content {
+    animation: none;
+  }
+
+  .design-story__product img {
+    transition: none;
+  }
+}

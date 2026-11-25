@@ -1,0 +1,488 @@
+
+.gift {
+  width: 100%;
+  min-height: 800px;
+  margin-top: 150px;
+  padding: 123px 0 63px;
+  box-sizing: border-box;
+
+  background-color: #e8f0ec;
+  font-family: 'Pretendard', sans-serif;
+
+  // ==============================
+  // 전체 콘텐츠 영역
+  // ==============================
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    width: calc(100% - 80px);
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    width: 100%;
+  }
+
+  // ==============================
+  // 왼쪽 선물 메인 배너
+  // ==============================
+
+  &__banner {
+    position: relative;
+    display: block;
+
+    flex: 720;
+    min-width: 0;
+    aspect-ratio: 720 / 486;
+
+    overflow: hidden;
+    text-decoration: none;
+    color: #fff;
+
+    &:hover .gift__banner-image {
+      transform: scale(1.04);
+    }
+  }
+
+  &__banner-image {
+    position: absolute;
+    display: block;
+
+    width: 100%;
+    height: 141.09%;
+
+    left: -0.06%;
+    top: -27.71%;
+
+    max-width: none;
+    object-fit: fill;
+
+    transition: transform 0.6s ease;
+  }
+
+  // 광주요 로고
+  &__logo {
+    position: absolute;
+
+    top: 3.7%;
+    right: 4.3%;
+
+    width: 18.18%;
+    height: auto;
+
+    object-fit: contain;
+  }
+
+  // 메인 배너 하단 문구
+  &__banner-text {
+    position: absolute;
+
+    left: 0;
+    bottom: 6px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    padding: 12px 30px;
+
+    color: #fff;
+  }
+
+  &__banner-label {
+    margin: 0;
+
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  &__banner-heading {
+    margin: 0;
+
+    font-family: 'Noto Serif KR', serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 44px;
+
+    word-break: keep-all;
+  }
+
+  // ==============================
+  // 오른쪽 선물 추천 영역
+  // ==============================
+
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    flex: 820;
+    min-width: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  // 어떤 날, 어떤 선물
+  &__heading {
+    margin: 0;
+
+    font-family: 'Noto Serif KR', serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 56px;
+
+    color: #111;
+    word-break: keep-all;
+  }
+
+  &__description {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+
+    color: #565a63;
+    word-break: keep-all;
+  }
+
+  // 선물 고르기 버튼
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    flex-shrink: 0;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+
+    color: #30333a;
+    text-decoration: none;
+    white-space: nowrap;
+
+    span {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover span {
+      transform: translateX(5px);
+    }
+  }
+
+  // ==============================
+  // 결혼 선물 / 집들이 선물
+  // ==============================
+
+  &__products {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+
+    width: 100%;
+  }
+
+  &__product {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    flex: 1;
+    min-width: 0;
+
+    color: #111;
+    text-decoration: none;
+
+    &:hover .gift__product-image img {
+      transform: scale(1.05);
+    }
+
+    &:hover .gift__product-name span {
+      transform: translateX(5px);
+    }
+  }
+
+  &__product-image {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 400 / 300;
+
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      top: 0;
+      left: 0;
+
+      max-width: none;
+      object-fit: fill;
+
+      transition: transform 0.5s ease;
+    }
+
+    // 결혼 선물 이미지 크롭
+    &--wedding img {
+      height: 133.33%;
+      top: -28.45%;
+      left: 0.07%;
+    }
+
+    // 집들이 선물 이미지 크롭
+    &--housewarming img {
+      height: 110.5%;
+      top: -5.25%;
+    }
+  }
+
+  &__product-name {
+    margin: 0;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+
+    color: #111;
+
+    span {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  // ==============================
+  // 하단 선물 서비스 안내
+  // ==============================
+
+  &__services {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+
+    width: 100%;
+    min-height: 88px;
+    padding: 6px 16px;
+
+    border-top: 1.5px solid #aec3ba;
+    box-sizing: border-box;
+  }
+
+  &__service {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-shrink: 0;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+
+    color: #111;
+    text-decoration: none;
+    white-space: nowrap;
+
+    img {
+      display: block;
+      flex-shrink: 0;
+      max-width: 24px;
+      max-height: 24px;
+      object-fit: contain;
+    }
+
+    // 첫 번째 항목 오른쪽 구분선
+    &:first-child {
+      padding: 13px 64px 13px 22px;
+      border-right: 1.5px solid #aec3ba;
+    }
+
+    &:hover {
+      color: #638779;
+    }
+  }
+
+  // ==============================
+  // 태블릿 반응형
+  // ==============================
+
+  @media (max-width: 1200px) {
+    min-height: auto;
+    margin-top: 100px;
+    padding: 80px 0;
+
+    &__content {
+      gap: 32px;
+    }
+
+    &__detail {
+      gap: 24px;
+    }
+
+    &__header {
+      flex-wrap: wrap;
+    }
+
+    &__heading {
+      font-size: 36px;
+      line-height: 48px;
+    }
+
+    &__description,
+    &__more,
+    &__product-name {
+      font-size: 16px;
+      line-height: 26px;
+    }
+
+    &__banner-heading {
+      font-size: 24px;
+      line-height: 34px;
+    }
+
+    &__banner-label {
+      font-size: 14px;
+    }
+
+    &__services {
+      gap: 32px;
+    }
+
+    &__service {
+      font-size: 16px;
+
+      &:first-child {
+        padding-right: 32px;
+      }
+    }
+  }
+
+  // ==============================
+  // 모바일 반응형
+  // ==============================
+
+  @media (max-width: 767px) {
+    margin-top: 80px;
+    padding: 48px 0;
+
+    &__inner {
+      width: calc(100% - 40px);
+      gap: 32px;
+    }
+
+    &__content {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    &__banner {
+      flex: none;
+      width: 100%;
+    }
+
+    &__banner-text {
+      padding: 12px 16px;
+    }
+
+    &__banner-heading {
+      font-size: 22px;
+      line-height: 32px;
+    }
+
+    &__detail {
+      flex: none;
+      width: 100%;
+      gap: 24px;
+    }
+
+    &__text {
+      gap: 12px;
+    }
+
+    &__heading {
+      font-size: 30px;
+      line-height: 44px;
+    }
+
+    &__description {
+      font-size: 16px;
+      line-height: 26px;
+    }
+
+    &__more {
+      font-size: 14px;
+    }
+
+    &__products {
+      gap: 12px;
+    }
+
+    &__product {
+      gap: 8px;
+    }
+
+    &__product-name {
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+    &__services {
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      padding: 20px 0 0;
+    }
+
+    &__service {
+      font-size: 14px;
+      gap: 6px;
+
+      img {
+        max-width: 20px;
+        max-height: 20px;
+      }
+
+      &:first-child {
+        width: 100%;
+        padding: 0;
+        border-right: none;
+      }
+    }
+  }
+}
+
+// 모션 감소 설정
+@media (prefers-reduced-motion: reduce) {
+  .gift__banner-image,
+  .gift__product-image img,
+  .gift__product-name span,
+  .gift__more span {
+    transition: none;
+  }
+}

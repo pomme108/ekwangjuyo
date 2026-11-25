@@ -1,0 +1,81 @@
+// ===== 스토리 타임라인 (제작과정 → 사랑을 담아 → 식탁으로!) =====
+.story-timeline {
+  position: absolute;
+  inset: 0;
+  color: #fff;
+}
+
+// 점 + 라벨이 놓이는 줄 (진행선과 같은 가로 범위: left 32px, width 265px)
+.story-timeline__chapters {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  width: 265px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story-timeline__chapter {
+  position: absolute;
+  top: 0;
+  // left 값은 JSX의 style에서 0% / 50% / 100%로 지정
+
+  button {
+    position: absolute;
+    top: 3px;                   // padding 12px만큼 올려서 글자 위치(15px)는 그대로
+    left: 0;
+    transform: translateX(-50%);
+    padding: 12px 10px 20px;    // 클릭 영역 확대 (글자 + 점 근처까지)
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover { opacity: 0.7; }
+
+    &:focus-visible {
+      outline: 1px solid #fff;
+      outline-offset: -2px;
+    }
+  }
+}
+
+.story-timeline__dot {
+  position: absolute;
+  top: 41px;                    // 진행선 높이
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 30%);
+  transform: translate(-50%, -50%);
+}
+
+// 지나간(현재 포함) 구간의 점은 흰색
+.story-timeline__chapter[data-active='true'] .story-timeline__dot {
+  background: #fff;
+}
+
+// 진행선 (배경 선 30% + 흰 진행선)
+.story-timeline__track {
+  position: absolute;
+  top: 41px;
+  left: 32px;
+  width: 265px;
+  height: 1px;
+  background: rgb(255 255 255 / 30%);
+}
+
+.story-timeline__bar {
+  display: block;
+  height: 100%;
+  background: #fff;
+  transition: width 0.25s linear;   // timeupdate가 초당 4번쯤이라 부드럽게
+}
