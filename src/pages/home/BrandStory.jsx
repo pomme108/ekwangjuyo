@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react'
+import { StoryTitle } from './StoryTitle'
 import './scss/brand-story.scss'
 
 export const BrandStory = () => {
@@ -33,9 +34,6 @@ export const BrandStory = () => {
 
   return (
     <section className="brand-story">
-      <h2 className="brand-story__title">
-        Brand Story
-      </h2>
 
       <div className="brand-story__inner">
         <div
@@ -45,10 +43,13 @@ export const BrandStory = () => {
           }`}
         >
 
-          <h3 className="brand-story__heading">
-            전통을 잇고,<br />
-            일상을 빚습니다.
-          </h3>
+          <div className="brand-story__header">
+            <StoryTitle>Brand Story</StoryTitle>
+            <h3 className="brand-story__heading">
+              전통을 잇고,<br />
+              일상을 빚습니다.
+            </h3>
+          </div>
 
           <p className="brand-story__description">
             1963년 시작된 광주요는 한국 도자의 아름다움을

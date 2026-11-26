@@ -1,16 +1,504 @@
-.main-hero {
+.review {
   position: relative;
   width: 100%;
-  aspect-ratio: 1920 / 800;     // 시안 비율 그대로 (화면 폭에 맞춰 높이가 변함)
+  max-width: 1920px;
+  min-height: 830px;
+  margin: 110px auto 0;
   overflow: hidden;
-  background: #111;
+  background: #fff;
+
+  // 왼쪽 제목 영역
+  &__heading {
+    position: absolute;
+    top: 88px;
+    left: 8.229%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  // 제목
+  &__title {
+    margin: 0;
+
+    font-family: 'Noto Serif KR', serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 56px;
+
+    color: #111;
+  }
+
+  // 설명
+  &__description {
+    margin: 0;
+
+    font-family: 'Pretendard', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+
+    color: #565a63;
+  }
+
+  // 더보기 버튼
+  &__more {
+    position: absolute;
+    top: 37px;
+    right: 6.5%;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    font-family: 'Pretendard', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+
+    color: #111;
+    text-decoration: none;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  // 오른쪽 리뷰 영역
+  &__gallery {
+    position: relative;
+    width: 63.125%;
+    min-width: 0;
+    margin-left: 36.875%;
+    padding-top: 106px;
+    box-sizing: border-box;
+  }
+
+  // 가로 스크롤 영역
+  &__slider {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+
+    width: 100%;
+    min-width: 0;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+    scroll-behavior: auto;
+    touch-action: pan-x pan-y;
+
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // 드래그 중
+    &.is-dragging {
+      cursor: grabbing;
+
+      .review__card {
+        cursor: grabbing;
+      }
+
+      .review__card:hover,
+      .review__card:focus-visible {
+        .review__overlay,
+        .review__info,
+        .review__rating {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  // 리뷰 카드
+  &__card {
+    position: relative;
+
+    flex: 0 0 452px;
+    flex-shrink: 0;
+
+    width: 452px;
+    min-width: 452px;
+    height: 618px;
+
+    overflow: hidden;
+    background: #d9d9d9;
+    cursor: grab;
+
+    // 호버 효과
+    &:hover,
+    &:focus-visible {
+      .review__overlay {
+        opacity: 0.5;
+      }
+
+      .review__info,
+      .review__rating {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    // 두 번째 이미지 크롭
+    &--2 {
+      .review__image {
+        position: absolute;
+
+        width: 140%;
+        height: 135.04%;
+        max-width: none;
+
+        left: -19.97%;
+        top: -20.74%;
+      }
+    }
+  }
+
+  // 리뷰 이미지
+  &__image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    pointer-events: none;
+
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  // 검정색 오버레이
+  &__overlay {
+    position: absolute;
+    inset: 0;
+
+    background: #000;
+    opacity: 0;
+
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  // 리뷰 내용 영역
+  &__info {
+    position: absolute;
+
+    left: 39px;
+    right: 39px;
+    top: 368px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    color: #fff;
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+
+    pointer-events: none;
+  }
+
+  // 리뷰 상품명
+  &__product {
+    margin: 0;
+
+    font-family: 'Noto Serif KR', serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 35px;
+    letter-spacing: -0.56px;
+  }
+
+  // 리뷰 내용
+  &__comment {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    margin: 0;
+    overflow: hidden;
+
+    font-family: 'Pretendard', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: -0.4px;
+  }
+
+  // 두 번째, 세 번째 리뷰 문구 위치
+  &__card--2,
+  &__card--3 {
+    .review__info {
+      top: 440px;
+      gap: 18px;
+    }
+  }
+
+  // 평점
+  &__rating {
+    position: absolute;
+
+    left: 25px;
+    bottom: 36px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #fff;
+
+    font-family: 'Pretendard', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    opacity: 0;
+    transform: translateY(15px);
+
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+
+    pointer-events: none;
+
+    img {
+      width: 28px;
+      height: 34px;
+      object-fit: contain;
+    }
+  }
+
+  // 하단 스크롤바 영역
+  &__progress {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 20px;
+
+    margin-top: 31px;
+  }
+
+  // 직접 조작 가능한 스크롤바
+  &__progress-range {
+    display: block;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 100%;
+    height: 20px;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    border-radius: 0;
+
+    background: transparent;
+    cursor: pointer;
+
+    // Chrome, Edge, Safari 스크롤바 배경
+    &::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 4px;
+
+      background: #e4e6ea;
+      border: none;
+      border-radius: 0;
+    }
+
+    // Chrome, Edge, Safari 이동 막대
+    &::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+
+      width: 25%;
+      height: 4px;
+
+      border: none;
+      border-radius: 0;
+
+      background: #b4b8c0;
+      cursor: grab;
+    }
+
+    // Firefox 스크롤바 배경
+    &::-moz-range-track {
+      width: 100%;
+      height: 4px;
+
+      background: #e4e6ea;
+      border: none;
+      border-radius: 0;
+    }
+
+    // Firefox 이동 막대
+    &::-moz-range-thumb {
+      width: 25%;
+      height: 4px;
+
+      border: none;
+      border-radius: 0;
+
+      background: #b4b8c0;
+      cursor: grab;
+    }
+
+    // 스크롤바 드래그 중
+    &:active::-webkit-slider-thumb {
+      cursor: grabbing;
+      background: #9298a3;
+    }
+
+    &:active::-moz-range-thumb {
+      cursor: grabbing;
+      background: #9298a3;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
 }
 
-.main-hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
+// =============================
+// 태블릿
+// =============================
+@media (max-width: 1200px) {
+  .review {
+    min-height: auto;
+    padding-bottom: 60px;
+
+    &__heading {
+      position: relative;
+      top: auto;
+      left: auto;
+
+      padding: 0 40px;
+    }
+
+    &__title {
+      font-size: 38px;
+      line-height: 48px;
+    }
+
+    &__more {
+      top: 0;
+      right: 40px;
+    }
+
+    &__gallery {
+      width: calc(100% - 40px);
+      margin-left: 40px;
+      padding-top: 40px;
+    }
+  }
+}
+
+// =============================
+// 모바일
+// =============================
+@media (max-width: 767px) {
+  .review {
+    margin-top: 80px;
+    padding-bottom: 40px;
+
+    &__heading {
+      padding: 0 20px;
+      gap: 12px;
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 38px;
+    }
+
+    &__description {
+      font-size: 15px;
+      line-height: 24px;
+    }
+
+    &__more {
+      position: relative;
+      top: auto;
+      right: auto;
+
+      justify-content: flex-end;
+
+      margin: 20px 20px 0;
+      font-size: 14px;
+    }
+
+    &__gallery {
+      width: calc(100% - 20px);
+      margin-left: 20px;
+      padding-top: 20px;
+    }
+
+    &__slider {
+      gap: 12px;
+    }
+
+    &__card {
+      flex-basis: 280px;
+
+      width: 280px;
+      min-width: 280px;
+      height: 383px;
+    }
+
+    &__info {
+      left: 20px;
+      right: 20px;
+      top: auto;
+      bottom: 70px;
+
+      gap: 16px;
+    }
+
+    &__card--2,
+    &__card--3 {
+      .review__info {
+        top: auto;
+        bottom: 70px;
+      }
+    }
+
+    &__product {
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    &__comment {
+      font-size: 15px;
+      line-height: 22px;
+    }
+
+    &__rating {
+      left: 20px;
+      bottom: 20px;
+      font-size: 16px;
+    }
+
+    &__progress {
+      margin-top: 16px;
+    }
+  }
 }

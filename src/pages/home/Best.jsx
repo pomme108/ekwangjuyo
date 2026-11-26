@@ -1,6 +1,13 @@
 
-import { useState, Suspense } from 'react'
+import {
+  useState,
+  useEffect,
+  useRef,
+  Suspense,
+} from 'react'
+
 import { Canvas } from '@react-three/fiber'
+
 import {
   OrbitControls,
   useGLTF,
@@ -8,7 +15,12 @@ import {
   Bounds,
   Environment,
 } from '@react-three/drei'
+
 import './scss/best.scss'
+
+// ==============================
+// 베스트 상품 데이터
+// ==============================
 
 const bestItems = [
   {
@@ -49,7 +61,10 @@ const bestItems = [
   },
 ]
 
+// ==============================
 // 3D 모델 불러오기
+// ==============================
+
 const ProductModel = ({ model }) => {
   const { scene } = useGLTF(`/models/${model}`)
 
@@ -60,7 +75,10 @@ const ProductModel = ({ model }) => {
   )
 }
 
+// ==============================
 // 3D 뷰어
+// ==============================
+
 const ProductViewer = ({ model }) => {
   return (
     <Canvas
@@ -78,34 +96,101 @@ const ProductViewer = ({ model }) => {
       />
 
       <Suspense fallback={null}>
-        <Bounds fit clip observe margin={1.5}>
-          <ProductModel
-            key={model}
-            model={model}
-          />
+
+        <Bounds
+          key={model}
+          fit
+          clip
+          observe
+          margin={1.5}
+        >
+          <ProductModel model={model} />
         </Bounds>
 
         <Environment preset="studio" />
+
       </Suspense>
 
       <OrbitControls
+        makeDefault
         enableZoom={true}
         enablePan={false}
         enableRotate={true}
         autoRotate={true}
         autoRotateSpeed={1}
       />
+
     </Canvas>
   )
 }
 
+// ==============================
+// Best Seller
+// ==============================
+
 export const Best = () => {
+
+  // 선택한 상품
   const [activeItem, setActiveItem] = useState(null)
 
-  return (
-    <section className="best">
+  // 상품 이미지 펼침 상태
+  const [isExpanded, setIsExpanded] = useState(false)
 
-      {/* 상단 제목 */}
+  // 스크롤 감지 영역
+  const stageRef = useRef(null)
+
+  // ==============================
+  // 스크롤 진입 애니메이션
+  // ==============================
+
+  useEffect(() => {
+    const stage = stageRef.current
+
+    if (!stage) return
+
+    // 모바일 및 모션 감소 설정
+    if (
+      window.matchMedia('(max-width: 767px)').matches ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      setIsExpanded(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+
+          // 상품 이미지 펼치기
+          setIsExpanded(true)
+
+          // 최초 한 번만 실행
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0,
+        rootMargin: '0px 0px -35% 0px',
+      }
+    )
+
+    observer.observe(stage)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  // ==============================
+  // 화면 출력
+  // ==============================
+
+  return (
+    <section
+      className={`best ${isExpanded ? 'is-expanded' : ''}`}
+    >
+
+      {/* 상단 타이틀 */}
       <div className="best__header">
 
         <h2 className="best__title">
@@ -123,21 +208,28 @@ export const Best = () => {
 
       </div>
 
-      {/* 상품 이미지 및 3D 영역 */}
-      <div className="best__stage">
+      {/* 상품 이미지 및 3D 뷰어 영역 */}
+      <div
+        ref={stageRef}
+        className="best__stage"
+      >
 
         {/* 가운데 3D 뷰어 */}
         <div className="best__viewer">
 
           {activeItem ? (
             <>
+
+              {/* 선택한 상품 3D 모델 */}
               <div className="best__canvas">
                 <ProductViewer
                   model={activeItem.model}
                 />
               </div>
 
+              {/* 선택한 상품 정보 */}
               <div className="best__viewer-info">
+
                 <p className="best__viewer-name">
                   {activeItem.name}
                 </p>
@@ -145,8 +237,10 @@ export const Best = () => {
                 <p className="best__viewer-guide">
                   드래그하여 360°로 살펴보세요.
                 </p>
+
               </div>
 
+              {/* 3D 뷰어 닫기 버튼 */}
               <button
                 type="button"
                 className="best__close"
@@ -155,8 +249,11 @@ export const Best = () => {
               >
                 ×
               </button>
+
             </>
           ) : (
+
+            /* 초기 3D View 화면 */
             <div className="best__placeholder">
 
               <img
@@ -167,11 +264,12 @@ export const Best = () => {
               <span>3D View</span>
 
             </div>
+
           )}
 
         </div>
 
-        {/* 주변 상품 이미지 */}
+        {/* 주변 상품 이미지 6개 */}
         {bestItems.map((item) => (
           <button
             type="button"
@@ -188,6 +286,7 @@ export const Best = () => {
             onClick={() => setActiveItem(item)}
             aria-pressed={activeItem?.id === item.id}
             aria-label={`${item.name} 3D 보기`}
+            disabled={!isExpanded}
           >
 
             <img
@@ -196,8 +295,13 @@ export const Best = () => {
               draggable={false}
             />
 
+            {/* 상품 호버 시 이름 표시 */}
             <div className="best__overlay">
-              <span>{item.name}</span>
+
+              <span>
+                {item.name}
+              </span>
+
             </div>
 
           </button>

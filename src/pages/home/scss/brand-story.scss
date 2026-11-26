@@ -1,18 +1,18 @@
 
 .brand-story {
   width: 100%;
-  padding-top: 89px;
+  padding-top: 140px;
   box-sizing: border-box;
 
-  // Brand Story 소제목
-  &__title {
-    margin: 0 0 82px;
-    font-family: 'Pretendard', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 32px;
-    color: #c4c7ce;
-    text-align: center;
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 100%;
+
+    .story-title {
+      text-align: left;
+    }
   }
 
   // 전체 콘텐츠 영역
@@ -20,10 +20,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 80px;
+    gap: 82px;
 
     width: calc(100% - 80px);
-    max-width: 1580.32px;
+    max-width: 1602.32px;
     margin: 0 auto;
   }
 
@@ -45,9 +45,9 @@
 
     font-family: 'Noto Serif KR', serif;
     font-size: 62px;
-    font-weight: 500;
-    line-height: 76px;
-    color: #111;
+    font-weight: 600;
+    line-height: 80px;
+    color: var(--color-neutral-black);
     word-break: keep-all;
   }
 
@@ -60,8 +60,8 @@
     font-family: 'Pretendard', sans-serif;
     font-size: 24px;
     font-weight: 400;
-    line-height: 32px;
-    color: #757982;
+    line-height: 30px;
+    color: var(--color-neutral-medium-gray-2);
     word-break: keep-all;
   }
 
@@ -75,7 +75,7 @@
     font-size: 18px;
     font-weight: 500;
     line-height: 26px;
-    color: #111;
+    color: var(--color-neutral-black);
     text-decoration: none;
 
     img {
@@ -93,9 +93,9 @@
   // 오른쪽 이미지 영역
   &__image {
     position: relative;
-    flex: 848;
+    flex: 868;
     min-width: 0;
-    aspect-ratio: 848 / 631;
+    aspect-ratio: 868 / 646;
     overflow: hidden;
 
     img {
@@ -151,10 +151,6 @@
   @media (max-width: 1024px) {
     padding-top: 70px;
 
-    &__title {
-      margin-bottom: 50px;
-    }
-
     &__inner {
       gap: 40px;
     }
@@ -180,11 +176,6 @@
 
   @media (max-width: 767px) {
     padding-top: 60px;
-
-    &__title {
-      margin-bottom: 40px;
-      font-size: 16px;
-    }
 
     &__inner {
       flex-direction: column;

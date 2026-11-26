@@ -1,0 +1,13 @@
+.story-title {
+  margin: 0;
+  color: var(--color-neutral-medium-gray-1);
+  font-family: 'Pretendard', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: center;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+}

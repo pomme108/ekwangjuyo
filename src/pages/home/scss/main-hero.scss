@@ -5,7 +5,7 @@
   height: 100vh;
   height: 900px;               // 모바일 주소창 높이 대응
   overflow: hidden;
-  background: #111;
+  background: var(--color-neutral-black);
 
   // 흰 글씨가 밝은 영상 위에서도 보이도록 위/아래에 옅은 그림자 (필요 없으면 삭제)
   &::after {

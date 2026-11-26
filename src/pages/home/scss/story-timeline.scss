@@ -2,7 +2,7 @@
 .story-timeline {
   position: absolute;
   inset: 0;
-  color: #fff;
+  color: var(--color-neutral-white);
 }
 
 // 점 + 라벨이 놓이는 줄 (진행선과 같은 가로 범위: left 32px, width 265px)
@@ -33,7 +33,7 @@
     font: inherit;
     font-size: 12px;
     line-height: 16px;
-    color: #fff;
+    color: var(--color-neutral-white);
     white-space: nowrap;
     cursor: pointer;
     transition: opacity 0.2s;
@@ -41,7 +41,7 @@
     &:hover { opacity: 0.7; }
 
     &:focus-visible {
-      outline: 1px solid #fff;
+      outline: 1px solid var(--color-neutral-white);
       outline-offset: -2px;
     }
   }
@@ -60,7 +60,7 @@
 
 // 지나간(현재 포함) 구간의 점은 흰색
 .story-timeline__chapter[data-active='true'] .story-timeline__dot {
-  background: #fff;
+  background: var(--color-neutral-white);
 }
 
 // 진행선 (배경 선 30% + 흰 진행선)
@@ -76,6 +76,6 @@
 .story-timeline__bar {
   display: block;
   height: 100%;
-  background: #fff;
+  background: var(--color-neutral-white);
   transition: width 0.25s linear;   // timeupdate가 초당 4번쯤이라 부드럽게
 }

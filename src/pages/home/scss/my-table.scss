@@ -1,0 +1,161 @@
+.my-table {
+  position: relative;
+  width: 100%;
+  height: 850px;
+  margin-top: 129px;
+  overflow: hidden;
+
+  // 배경 이미지
+  &__background {
+    position: absolute;
+    inset: 0;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  // 검정색 오버레이
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  // 전체 텍스트 영역
+  &__content {
+    position: absolute;
+    left: 50%;
+    bottom: 83px;
+    transform: translateX(-50%);
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+  }
+
+  // 제목과 설명 영역
+  &__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  // 제목
+  &__title {
+    margin: 0;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 56px;
+    color: #fff;
+  }
+
+  // 설명
+  &__description {
+    margin: 0;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    color: #fff;
+  }
+
+  // 내 식탁 꾸미기 버튼
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 209px;
+    height: 44px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+
+    border: 1px solid #fff;
+    background: rgba(255, 255, 255, 0.1);
+
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #fff;
+    text-decoration: none;
+
+    transition: background 0.3s ease;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+// 태블릿
+@media (max-width: 1200px) {
+  .my-table {
+    height: 650px;
+    margin-top: 100px;
+
+    &__content {
+      bottom: 60px;
+      gap: 32px;
+    }
+
+    &__title {
+      font-size: 38px;
+      line-height: 48px;
+    }
+
+    &__description {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+}
+
+// 모바일
+@media (max-width: 767px) {
+  .my-table {
+    height: 500px;
+    margin-top: 80px;
+
+    &__content {
+      bottom: 40px;
+      gap: 28px;
+    }
+
+    &__text {
+      gap: 12px;
+    }
+
+    &__title {
+      font-size: 26px;
+      line-height: 38px;
+      word-break: keep-all;
+    }
+
+    &__description {
+      font-size: 15px;
+      line-height: 24px;
+      word-break: keep-all;
+    }
+  }
+}

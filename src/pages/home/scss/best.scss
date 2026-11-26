@@ -30,7 +30,7 @@
     font-size: 20px;
     font-weight: 600;
     line-height: 28px;
-    color: #c4c7ce;
+    color: d
   }
 
   &__heading {
@@ -49,7 +49,7 @@
     font-size: 24px;
     font-weight: 600;
     line-height: 32px;
-    color: #757982;
+    color: var(--color-neutral-medium-gray-2);
     word-break: keep-all;
   }
 
@@ -84,7 +84,7 @@
     align-items: center;
     justify-content: center;
 
-    background: #fff;
+    background: var(--color-neutral-white);
     border: 3px solid #be9c64;
     border-radius: 24px;
 
@@ -112,7 +112,7 @@
       font-size: 24px;
       font-weight: 400;
       line-height: 32px;
-      color: #565a63;
+      color: var(--color-neutral-gray);
     }
   }
 
@@ -159,7 +159,7 @@
 
     font-size: 14px;
     font-weight: 400;
-    color: #757982;
+    color: var(--color-neutral-medium-gray-2);
   }
 
   // 3D 뷰어 닫기
@@ -176,7 +176,7 @@
     border-radius: 50%;
 
     background: #f5f5f5;
-    color: #565a63;
+    color: var(--color-neutral-gray);
 
     font-size: 24px;
     line-height: 1;
@@ -340,7 +340,7 @@
       font-size: 20px;
       font-weight: 600;
       line-height: 32px;
-      color: #fff;
+      color: var(--color-neutral-white);
       text-align: center;
       word-break: keep-all;
     }
@@ -480,6 +480,147 @@
 @media (prefers-reduced-motion: reduce) {
   .best__item img,
   .best__overlay {
+    transition: none;
+  }
+}
+
+// =====================================
+// Best Seller 스크롤 펼침 애니메이션
+// =====================================
+
+@media (min-width: 768px) {
+  .best {
+    &__stage {
+      isolation: isolate;
+    }
+
+    // 가운데 3D View는 고정
+    &__viewer {
+      z-index: 10;
+    }
+
+    // 상품 이미지 이동 애니메이션
+    &__item {
+      transition:
+        left 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+        top 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+        width 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+        height 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+        border-radius 1.3s ease,
+        box-shadow 1.3s ease;
+    }
+
+    // 이미지 겹침 순서
+    &__item--1,
+    &__item--4 {
+      z-index: 1;
+    }
+
+    &__item--3,
+    &__item--6 {
+      z-index: 2;
+    }
+
+    &__item--5,
+    &__item--2 {
+      z-index: 3;
+    }
+
+    // =================================
+    // 첫 화면: 이미지가 겹쳐 있는 상태
+    // =================================
+
+    &:not(.is-expanded) {
+      .best__item {
+        border-radius: 24px;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+      }
+
+      // 왼쪽 바깥쪽 이미지
+      .best__item--1 {
+        left: 9.14%;
+        top: 35.12%;
+        width: 20.89%;
+        height: 39.79%;
+      }
+
+      // 왼쪽 중간 이미지
+      .best__item--3 {
+        left: 17.16%;
+        top: 30.83%;
+        width: 25.36%;
+        height: 48.29%;
+      }
+
+      // 왼쪽 안쪽 이미지
+      .best__item--5 {
+        left: 25.65%;
+        top: 27.66%;
+        width: 28.65%;
+        height: 54.57%;
+      }
+
+      // 오른쪽 안쪽 이미지
+      .best__item--2 {
+        left: 45.65%;
+        top: 27.66%;
+        width: 28.65%;
+        height: 54.57%;
+      }
+
+      // 오른쪽 중간 이미지
+      .best__item--6 {
+        left: 57.53%;
+        top: 30.83%;
+        width: 25.36%;
+        height: 48.29%;
+      }
+
+      // 오른쪽 바깥쪽 이미지
+      .best__item--4 {
+        left: 69.97%;
+        top: 35.12%;
+        width: 20.89%;
+        height: 39.79%;
+      }
+
+      // 접힌 상태에서는 상품명 숨김
+      .best__overlay {
+        opacity: 0;
+      }
+    }
+
+    // =================================
+    // 스크롤 진입 후: 이미지 펼침 상태
+    // =================================
+
+    &.is-expanded {
+      .best__item {
+        pointer-events: auto;
+      }
+
+      .best__item--1,
+      .best__item--4 {
+        transition-delay: 0s;
+      }
+
+      .best__item--3,
+      .best__item--6 {
+        transition-delay: 0.08s;
+      }
+
+      .best__item--5,
+      .best__item--2 {
+        transition-delay: 0.16s;
+      }
+    }
+  }
+}
+
+// 모션 감소 설정
+@media (prefers-reduced-motion: reduce) {
+  .best .best__item {
     transition: none;
   }
 }

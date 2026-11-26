@@ -1,0 +1,38 @@
+// 광주요 Figma 컬러 변수 가이드에 표시된 HEX 값
+$palette: (
+  // Primary · 광주요 청자색
+  celadon-100: #e8f0ec,
+  celadon-200: #c2cfca,
+  celadon-300: #aec3ba,
+  celadon-400: #5a776b,
+  celadon-500: #25513f,
+  celadon-600: #0e3324,
+
+  // Subcolor · 아이보리금색
+  ivory-gold-100: #fdfbf6, //100
+  ivory-gold-200: #f8f2e4, //200
+  ivory-gold-300: #e8dbc2,
+  ivory-gold-400: #c8b99a,
+  ivory-gold-500: #7e6d48,
+
+  // Neutral
+  neutral-lighter-gray: #e4e6ea,
+  neutral-light-gray: #b4b8c0,
+  neutral-medium-gray-1: #9599a1, //중간 회색1
+  neutral-medium-gray-2: #757982, //중간 회색2
+  neutral-gray: #565a63, //회색
+  neutral-dark-gray: #3d4048, //짙은 회색
+  neutral-black: #111111,
+  neutral-white: #ffffff,
+
+  // Accent · 남색
+  navy-100: #e5e8f6, //100
+  navy-200: #878db8, //200
+  navy-300: #191c57, //300
+);
+
+:root {
+  @each $name, $value in $palette {
+    --color-#{$name}: #{$value};
+  }
+}

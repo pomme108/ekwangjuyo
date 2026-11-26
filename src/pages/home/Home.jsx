@@ -4,6 +4,11 @@ import { BrandTimeline } from './BrandTimeline'
 import { DesignStory } from './DesignStory'
 import { Best } from './Best'
 import { Gift } from './Gift'
+import PromotionBanner from './PromotionBanner';
+import MyTable from './MyTable';
+import Review from './Review'
+import SNS from './SNS'
+
 
 export const Home = () => {
   return (
@@ -14,6 +19,10 @@ export const Home = () => {
       <DesignStory />
       <Best />
       <Gift />
+      <PromotionBanner />
+      <MyTable/>
+      <Review/>
+      <SNS/>
     </>
   )
 }
